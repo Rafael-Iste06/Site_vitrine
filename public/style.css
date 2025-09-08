@@ -1,0 +1,163 @@
+/* ----------------- GENERAL ----------------- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fff8f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* ----------------- HEADER ----------------- */
+header {
+    background-color: #f5e6da;
+    padding: 20px 0;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    text-align: center;
+    color: #7a5c42;
+}
+
+header nav {
+    text-align: center;
+    margin-top: 10px;
+}
+
+header nav a {
+    color: #7a5c42;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: 500;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* ----------------- HERO ----------------- */
+#hero {
+    background-color: #fff2e6;
+    padding: 60px 0;
+    text-align: center;
+    border-bottom: 1px solid #f0e0d0;
+}
+
+#hero h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #8c5a3c;
+}
+
+#hero p {
+    font-size: 1.1rem;
+    color: #5a4030;
+}
+
+/* ----------------- ARTICLES ----------------- */
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.article {
+    background-color: #fffaf3;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.article:hover {
+    transform: translateY(-5px);
+}
+
+.article img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    background-color: #f0e0d0;
+    display: block;
+}
+
+.article-content {
+    padding: 15px;
+}
+
+.article-content h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #7a5c42;
+}
+
+.article-content p {
+    color: #5a4030;
+    line-height: 1.5;
+}
+
+.article-content small {
+    color: #8c5a3c;
+}
+
+/* ----------------- ADMIN PANEL ----------------- */
+.admin-panel {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: #fffaf3;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.admin-panel input, .admin-panel textarea, .admin-panel button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.admin-panel button {
+    background-color: #7a5c42;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.admin-panel button:hover {
+    background-color: #8c6d54;
+}
+
+/* ----------------- FOOTER ----------------- */
+footer {
+    background-color: #f5e6da;
+    padding: 15px 0;
+    text-align: center;
+    color: #7a5c42;
+    border-top: 1px solid #f0e0d0;
+}
+
+/* ----------------- RESPONSIVE ----------------- */
+@media (max-width: 768px) {
+    #hero h2 {
+        font-size: 1.5rem;
+    }
+
+    .article-content h3 {
+        font-size: 1.2rem;
+    }
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Ma Société</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Admin Panel</h1>
+        </div>
+    </header>
+
+    <main class="container admin-panel">
+        <section id="login-section">
+            <h2>Connexion Admin</h2>
+            <input type="text" id="admin-id" placeholder="Identifiant">
+            <input type="password" id="admin-password" placeholder="Mot de passe">
+            <button id="login-btn">Se connecter</button>
+            <p id="login-error" class="error"></p>
+        </section>
+
+        <section id="add-article-section" class="hidden">
+            <h2>Ajouter un Article</h2>
+            <input type="text" id="article-title" placeholder="Titre de l'article">
+            <input type="text" id="article-image" placeholder="URL de l'image">
+            <textarea id="article-content" placeholder="Contenu de l'article"></textarea>
+            <button id="add-article-btn">Ajouter</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
