@@ -120,4 +120,7 @@ if(loginBtn) {
 // ----------------- CHARGEMENT INIT -----------------
 fetchArticles();
 
-
+// ----------------- RAFRAICHISSEMENT AUTOMATIQUE CLIENT -----------------
+if (!window.location.pathname.includes('admin.html')) {
+    setInterval(fetchArticles, 5000); // Recharge toutes les 5 secondes sur la page client
+}
