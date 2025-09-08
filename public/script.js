@@ -1,6 +1,7 @@
 // ----------------- CONFIG ADMIN -----------------
 const ADMIN_ID = "admin";
 const ADMIN_PASSWORD = "password";
+const basicAuth = btoa(`${username}:${password}`);
 
 // ----------------- DOM ELEMENTS -----------------
 const articlesDiv = document.getElementById("articles");
@@ -62,7 +63,10 @@ if(addArticleBtn) {
         try {
             await fetch('/api/articles', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Basic ${basicAuth}`
+                },
                 body: JSON.stringify({ title, content, image })
             });
 
@@ -117,3 +121,4 @@ if(loginBtn) {
 
 // ----------------- CHARGEMENT INIT -----------------
 fetchArticles();
+
