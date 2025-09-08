@@ -87,19 +87,36 @@ if(addArticleBtn) {
 async function deleteArticle(index) {
     if(!confirm("Voulez-vous vraiment supprimer cet article ?")) return;
 
+    // 🔑 Popup login pour l'action de suppression
+    const id = prompt("Identifiant admin :");
+    const password = prompt("Mot de passe admin :");
+
+    if (!id || !password) {
+        alert("Suppression annulée (login manquant).");
+        return;
+    }
+
     try {
-        await fetch(`/api/admin/articles/${index}`, {
+        const res = await fetch(`/api/admin/articles/${index}`, {
             method: 'DELETE',
             headers: {
-                'Authorization': 'Basic ' + btoa('admin:password') // 🔑 Authentification admin
+                'Authorization': 'Basic ' + btoa(id + ":" + password)
             }
         });
+
+        if (!res.ok) {
+            alert("⚠️ Identifiants incorrects ou suppression refusée.");
+            return;
+        }
+
         fetchArticles();
     } catch(err) {
         console.error("Erreur suppression article:", err);
         alert("Impossible de supprimer l'article.");
     }
 }
+window.deleteArticle = deleteArticle;
+
 
 // ----------------- LOGIN ADMIN -----------------
 if(loginBtn) {
@@ -124,4 +141,5 @@ fetchArticles();
 if (!window.location.pathname.includes('admin.html')) {
     setInterval(fetchArticles, 5000); // Recharge toutes les 5 secondes sur la page client
 }
+
 
