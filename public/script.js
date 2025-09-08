@@ -60,10 +60,11 @@ if(addArticleBtn) {
         }
 
         try {
-            await fetch('/api/articles', {
+            await fetch('/api/admin/articles', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': 'Basic ' + btoa('admin:password') // 🔑 Authentification admin
                 },
                 body: JSON.stringify({ title, content, image })
             });
@@ -73,12 +74,7 @@ if(addArticleBtn) {
             document.getElementById("article-content").value = "";
             document.getElementById("article-image").value = "";
 
-            // Mise à jour instantanée sur la page publique si ouverte dans un autre onglet
-            if(window.opener) {
-                window.opener.fetchArticles();
-            }
-
-            // Recharger articles admin
+            // Mise à jour instantanée
             fetchArticles();
         } catch(err) {
             console.error("Erreur ajout article:", err);
@@ -92,14 +88,18 @@ async function deleteArticle(index) {
     if(!confirm("Voulez-vous vraiment supprimer cet article ?")) return;
 
     try {
-        await fetch(`/api/articles/${index}`, { method: 'DELETE' });
+        await fetch(`/api/admin/articles/${index}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Basic ' + btoa('admin:password') // 🔑 Authentification admin
+            }
+        });
         fetchArticles();
     } catch(err) {
         console.error("Erreur suppression article:", err);
         alert("Impossible de supprimer l'article.");
     }
 }
-window.deleteArticle = deleteArticle;
 
 // ----------------- LOGIN ADMIN -----------------
 if(loginBtn) {
@@ -124,3 +124,4 @@ fetchArticles();
 if (!window.location.pathname.includes('admin.html')) {
     setInterval(fetchArticles, 5000); // Recharge toutes les 5 secondes sur la page client
 }
+
