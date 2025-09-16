@@ -161,3 +161,51 @@ footer {
         font-size: 1.2rem;
     }
 }
+
+
+
+/* ----------------- CONTACT ----------------- */
+.contact-container {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.contact-container h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #7a5c42;
+}
+
+.contact-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.contact-card {
+    background-color: #fffaf3;
+    border: 1px solid #f0e0d0;
+    border-radius: 12px;
+    padding: 15px 25px;
+    text-decoration: none;
+    color: #5a4030;
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.contact-card i {
+    font-size: 1.5rem;
+    color: #8c5a3c;
+}
+
+.contact-card:hover {
+    background-color: #f5e6da;
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+}
