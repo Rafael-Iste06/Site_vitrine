@@ -47,6 +47,7 @@ function renderArticles(articles) {
     });
 }
 
+
 // ----------------- AJOUTER ARTICLE (ADMIN) -----------------
 if(addArticleBtn) {
     addArticleBtn.addEventListener("click", async () => {
@@ -59,29 +60,47 @@ if(addArticleBtn) {
             return;
         }
 
+        // 🔑 Popup login pour l'action d'ajout
+        const id = prompt("Identifiant admin :");
+        const password = prompt("Mot de passe admin :");
+
+        if (!id || !password) {
+            alert("Ajout annulé (login manquant).");
+            return;
+        }
+
         try {
-            await fetch('/api/admin/articles', {
+            const res = await fetch('/api/admin/articles', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Basic ' + btoa('admin:password') // 🔑 Authentification admin
+                    'Authorization': 'Basic ' + btoa(id + ":" + password) // Authentification admin
                 },
                 body: JSON.stringify({ title, content, image })
             });
+
+            if (!res.ok) {
+                alert("⚠️ Identifiants incorrects ou ajout refusé.");
+                return;
+            }
+
+            fetchArticles();
 
             // Efface les champs
             document.getElementById("article-title").value = "";
             document.getElementById("article-content").value = "";
             document.getElementById("article-image").value = "";
 
-            // Mise à jour instantanée
-            fetchArticles();
+            // 🔄 Commit automatique sur GitHub
+            await fetch('/api/admin/commit-articles', { method: 'POST' });
+
         } catch(err) {
             console.error("Erreur ajout article:", err);
             alert("Impossible d'ajouter l'article.");
         }
     });
 }
+
 
 // ----------------- SUPPRIMER ARTICLE (ADMIN) -----------------
 async function deleteArticle(index) {
@@ -110,6 +129,10 @@ async function deleteArticle(index) {
         }
 
         fetchArticles();
+
+        // 🔄 Commit automatique sur GitHub après suppression
+        await fetch('/api/admin/commit-articles', { method: 'POST' });
+
     } catch(err) {
         console.error("Erreur suppression article:", err);
         alert("Impossible de supprimer l'article.");
