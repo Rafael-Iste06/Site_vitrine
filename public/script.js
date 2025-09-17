@@ -39,7 +39,6 @@ function renderArticles(articles) {
             <div class="article-content">
                 <h3>${article.title}</h3>
                 <p>${article.content}</p>
-                <small>${article.date}</small>
                 ${window.location.pathname.includes('admin.html') ? `<br><button onclick="deleteArticle(${index})">Supprimer</button>` : ""}
             </div>
         `;
